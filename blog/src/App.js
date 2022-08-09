@@ -1,9 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
 
   let post = "강남 우동 맛집";
+
+  //destructuring 문법
+  let [a, c] = [1, 2];
+
+  
+  let [글제목, b] = useState('남자 코드 추천'); //글제목 : state에 보관했던 자료 / b : state 변경을 도와주는 함수
+  
+  //state를 쓰는 이유?
+  //변동 시 html이 재랜더링이 되기 때문에 자동으로 html에반영됨
+
 
   return (
     // jsx문법1) class(x) className(o) 
@@ -12,7 +23,7 @@ function App() {
 
     <div className="App">
       <div className="black-nav">
-        <h4 style={{color : "red"}}>블로그임다</h4>
+        <h4 style={{color : "white"}}>블로그임다</h4>
       </div>
       <h4>{post}</h4>
     </div>
