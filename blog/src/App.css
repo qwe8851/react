@@ -30,6 +30,11 @@
 
 
 /* 추가 시작 */
+
+div{
+  box-sizing: border-box;
+}
+
 .list{
   text-align: left;
   margin-left: 2px;
