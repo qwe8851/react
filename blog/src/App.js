@@ -5,9 +5,9 @@ import { useState } from 'react';
 
 function App() {
 
-  let post = "강남 우동 맛집";  
   let [글제목, 글제목변경] = useState(['남자 코드 추천', '강남 우동 맛집', '파이썬 독학']); 
   let [따봉, 따봉변경] = useState(0);
+
 
   return (
     // jsx문법1) class(x) className(o) 
@@ -18,6 +18,12 @@ function App() {
       <div className="black-nav">
         <h4>ReactBlog</h4>
       </div>
+
+      <button onClick={ ()=>{ 
+        let copy = [...글제목];
+        copy.sort();
+        글제목변경(copy);
+    } }> 정렬버튼 </button>
 
       <button onClick={()=>{
         // 글제목[0] = '여자 코트 추천';  ← 이렇게 쓸 경우 원본 데이터를 수정해버리므로 
