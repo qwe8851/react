@@ -49,10 +49,27 @@ function App() {
         <h4>{ 글제목[2] }</h4>
         <p>2월 17일 발행</p>
         <hr />
-      </div>
+      </div>     
+
+      <Modal></Modal>
       
     </div>
   );
+
+
+  // Modal 컴포넌트 생성
+  function Modal() {
+    return(
+      <>
+        <div className='model'>
+          <h4>제목</h4>
+          <p>날짜</p>
+          <p>상세내용</p>
+        </div>
+        <div></div>
+      </>
+    )        
+  }
 }
 
 
