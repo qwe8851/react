@@ -175,6 +175,48 @@ arr에는 이게 어디있는지 표시해주는 화살표만 넣게 됨.
 
 <br><br><br>
 
+## Component
+### component로 만들면 좋은 것들 
+1. 반복적인 html을 축약할 때 
+2. 큰 페이지들
+3. 자주 변경되는 ui같은 것들
+
+❗컴포넌트의 단점 : state를 가져다 쓸 떄 문제가 생김
+→ A함수에 있던 변수를 B함수에서 쓸 수 없음~
+
+
+### component 만드는 법 
+1. function 만들고
+2. return() 안에 html 담기
+3. <함수명></함수명> 
+
+
+### component Sample Code
+```js
+//컴포넌트 사용
+function sample() {
+    <Modal/>
+}
+
+//컴포넌트 생성
+function Modal() {
+    return(
+      <>
+        <div className='model'>
+          <h4>제목</h4>
+          <p>날짜</p>
+          <p>상세내용</p>
+        </div>
+        <div></div>
+      </>
+    )        
+  }
+```
+
+
+
+<br><br><br>
+
 # etc.
 ## 터미널/ 브라우저 콘솔창에 warning 없애기
 `/*eslint-disable*/`을 js파일 최상단에 추가
