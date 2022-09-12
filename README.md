@@ -214,6 +214,47 @@ function Modal() {
 ```
 
 
+<br><br><br>
+
+## 동적인 UI (Modal창) 만들기
+### 동적인 UI만드는 3step!
+1. html, css로 미리 디자인 구현
+2. UI의 현재상태를 state로 저장
+3. state에 따라 UI가 어떻게 보일지를 작성(조건문 등) 
+
+#### 1. html, css로 미리 디자인 구현
+```js
+function Modal() {
+    return(
+        <div className='model'>
+        <h4>제목</h4>
+        <p>날짜</p>
+        <p>상세내용</p>
+        </div>
+    )        
+}
+```
+
+
+#### 2. UI의 현재상태를 state로 저장
+```js
+let [modal, SetModal] = userState(false);
+```
+✔️ 관습1) state를 만들때 변수명을 맘대로, 함수명은 `set변수명`으로 작성
+페이지를 들어갔을때 상세 페이지(모달창)이 안보이는게 좋을 것 같아 false로 지정
+- [닫힘, 열림], [0, 1], [false, true] 다 상관 x
+- 형식은 자유 : 모달창의 상태를 표현할 수만 있으면 가능
+
+
+#### 3. state에 따라 UI가 어떻게 보일지를 작성(조건문 등) 
+💡 **삼항연산자** 형식 : `조건식 ? 참일 때 실행할 코드 : 거짓일 때 실행할 코드`
+```js
+{
+    modal = true ? <Modal/> : null
+}
+```
+✔️ html안에서 조건문을 쓸때 **중괄호를 열고 시작!**
+- null 대신 ''도 가능 (비어있는 html용으로 null을 자주 사용한다)
 
 <br><br><br>
 
