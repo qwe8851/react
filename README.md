@@ -218,6 +218,7 @@ function Modal() {
 
 <br><br><br>
 <!-- 220912 -->
+#Modal
 ## 동적인 UI (Modal창) 만들기
 ### 동적인 UI만드는 3step!
 1. html, css로 미리 디자인 구현
@@ -258,6 +259,159 @@ let [modal, SetModal] = userState(false);
 ```
 ✔️ html안에서 조건문을 쓸때 **중괄호를 열고 시작!**
 - null 대신 ''도 가능 (비어있는 html용으로 null을 자주 사용한다)
+<bt>
+
+### 📎응용) 모달창 닫기
+#### 혼자 풀어본 방법
+```js
+<h4 onClick = { ()=> {
+    if(modal == ture) { setModal(false)} else { setModal(true)}
+}}>글제목</h4>
+```
+if문을 추가하는 방식으로 했는데 선생님 답안을 보니 더 간단한 방법이 있었음. 
+
+#### 이게 더 좋은 방법!
+```js
+<h4 onClick = { ()=> {
+    setModal(!modal)
+}}>글제목</h4>
+```
+`!modal`의 !은 반대의 의미를 지님
+그래서 modal의 값을 반대로 바꿔줌! (false면 true를, true면 false를 반환)
+
+<br><br><br>
+
+# map
+## 1) array 자료 객수만큼 함수 안의 코드를 실행해 줌
+```js
+[1, 2, 3].map(function() {
+    console.log(1);
+})
+```
+ - result : 1, 1, 1
+
+## 2) 함수의 파라미터는 array 안에 있던 자료임
+```js
+[1, 2, 3].map(function(a) {
+    console.log(a);
+})
+```
+ - result : 1, 2, 3
+
+## 3) return에 뭐 적으면 array로 담아줌
+```js
+[1, 2, 3].map(function() {
+    return('123');
+})
+```
+ - result : ['123', '123', '123]
+
+## 4) 유용한 파라미터 2개 사용 가능
+```js
+글제목.map(function(a, i){
+    return(
+        <h4>{a}</h4>
+        <p>{i}</p>
+    )
+})
+```
+- a : array 안의 데이터들
+- i : 반복문을 돌때마다 0부터 1씩 증가하는 변수
+✔️ 중괄호 필수! 자꾸 까먹음..
+
+### 📎응용) 따봉 변경
+```js
+글제목.map(function(a, i){
+    return(
+        ...
+        <span onClick = { ()=> {
+            let copy = [...따봉];
+            copy[i] += 1;
+            따봉변경(copy);
+        }}>👍</span>{따봉[i]}
+    )
+})
+```
+- span태그의 👍를 누를때 마다 각각의 따봉수를 변경하려고 함.
+- 따봉 state의 값을 필요한 개수만큼 array형식으로 변경해줌 
+   → `let [따봉, 따봉변경] = useState([0, 0, 0]);`
+- 그리고 따봉의 copy본을 만들어 원본데이터를 수정하지 않으면서 state변경을 함
+✔️ copy본을 안만들고 원본데이터를 수정하려고 함 ㅜㅜ **copy본 만드는거 까먹지 말기!**
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br><br><br>
 
