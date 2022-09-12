@@ -183,12 +183,14 @@ arr에는 이게 어디있는지 표시해주는 화살표만 넣게 됨.
 
 ❗컴포넌트의 단점 : state를 가져다 쓸 떄 문제가 생김
 → A함수에 있던 변수를 B함수에서 쓸 수 없음~
+<br>
 
 
 ### component 만드는 법 
 1. function 만들고
 2. return() 안에 html 담기
 3. <함수명></함수명> 
+<br>
 
 
 ### component Sample Code
@@ -215,12 +217,13 @@ function Modal() {
 
 
 <br><br><br>
-
+<!-- 220912 -->
 ## 동적인 UI (Modal창) 만들기
 ### 동적인 UI만드는 3step!
 1. html, css로 미리 디자인 구현
 2. UI의 현재상태를 state로 저장
 3. state에 따라 UI가 어떻게 보일지를 작성(조건문 등) 
+<br>
 
 #### 1. html, css로 미리 디자인 구현
 ```js
@@ -234,7 +237,7 @@ function Modal() {
     )        
 }
 ```
-
+<br>
 
 #### 2. UI의 현재상태를 state로 저장
 ```js
@@ -244,7 +247,7 @@ let [modal, SetModal] = userState(false);
 페이지를 들어갔을때 상세 페이지(모달창)이 안보이는게 좋을 것 같아 false로 지정
 - [닫힘, 열림], [0, 1], [false, true] 다 상관 x
 - 형식은 자유 : 모달창의 상태를 표현할 수만 있으면 가능
-
+<br>
 
 #### 3. state에 따라 UI가 어떻게 보일지를 작성(조건문 등) 
 💡 **삼항연산자** 형식 : `조건식 ? 참일 때 실행할 코드 : 거짓일 때 실행할 코드`
