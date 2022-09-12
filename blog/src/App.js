@@ -45,7 +45,7 @@ function App() {
         <p>2월 17일 발행</p>
       </div>
       <div className="list">
-        <h4 onClick={()=>{setModal(true)}}>{ 글제목[2] }</h4>
+        <h4 onClick={()=>{if(modal == false){setModal(true)}else{setModal(false)}}}>{ 글제목[2] }</h4>
         <p>2월 17일 발행</p>
       </div>     
 
