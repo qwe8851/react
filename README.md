@@ -218,7 +218,7 @@ function Modal() {
 
 <br><br><br>
 <!-- 220912 -->
-#Modal
+# Modal
 ## 동적인 UI (Modal창) 만들기
 ### 동적인 UI만드는 3step!
 1. html, css로 미리 디자인 구현
