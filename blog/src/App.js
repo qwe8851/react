@@ -27,7 +27,6 @@ function App() {
     } }> 정렬버튼 </button>
 
       <button onClick={()=>{
-        // 글제목[0] = '여자 코트 추천';  ← 이렇게 쓸 경우 원본 데이터를 수정해버리므로 
         let copy = [...글제목];   //카피본을 만들어 얘를 수정하는것이 좋음.
         console.log(copy == 글제목);
          copy[0] = '여자 코트 추천';
@@ -72,7 +71,7 @@ function App() {
 
 
       {
-        modal == true ? <Modal/> : null
+        modal == true ? <Modal 글제목={글제목} /> : null
       }
       
     </div>
@@ -80,10 +79,10 @@ function App() {
 
 
   // Modal 컴포넌트 생성
-  function Modal() {
+  function Modal(props) {
     return(
         <div className='model'>
-          <h4>제목</h4>
+          <h4>{props.글제목[0]}</h4>
           <p>날짜</p>
           <p>상세내용</p>
         </div>
