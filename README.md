@@ -378,10 +378,53 @@ function Modal(props){
 
 
 
+<br><br><br>
 
+## props2
+### 모달창에 현재 클릭한 글의 글제목 띄우기
+동적인 ui만드는 3step에 따라 만들었음
 
+#### 1. html,css로 미리 디자인
+- 이미 되어 있음
 
+#### 2. 현재 ui 상태를 state에 저장
+상위 컴포넌트에 현재 상태를 저장할 state 정의
+` let [title, setTitle] = useState(0);`
+ - 현재 제목의 상태로 3가지가 있음.
+ - 0번째 글이 보이거나, 1번째 글이 보이거나, 2번째 글이 보이거나 
 
+#### 3. state에 따라 ui가 어떻게 보일지 작성
+```js
+function App() {
+    //1. 현재상태 저장
+    let [title, setTitle] = useState(0);
+
+    {
+        글제목.map(function(a, i){
+            return(
+                <h4 onClick = { ()=> {setModal(true); setTitle(i)}}>{글제목[i]}</h4>
+                //2. h4(글제목)이 클릭될 때 title의 값을 i(map 안에서의 i는 array(글제목)이 끝날때 까지 반복문이 돌 때 마다 0, 1, 2 ... 이렇게 증가하는 정수)로 변경함
+            )
+        })
+    }
+
+    {
+        //3. 하위컴포넌트(Modal)로 title을 사용하려면 props로 전송해야 함 
+        modal == true? <Modal title={title} 글제목={글제목} /> : null
+    }
+}
+
+function Modal(props){
+    return(
+        // 4. 하위 컴포넌트(Modal)에서 상위컴포넌트(App)에서 보낸 title값을 가져와 글제목에 인덱싱함
+        <h4>{props.글제목[props.title]}</h4>
+    )
+}
+
+```
+✔️ 다양한 컴포넌트에서 쓰이는 state는 **컴포넌트들 중 최고로 높은 부모에게 만들어놔야 함**
+- state는 `부모→자식`으로만 전송이 가능하기 때문
+ - 거진 App컴포넌트 안에 만들면 됨 
 
 
 
