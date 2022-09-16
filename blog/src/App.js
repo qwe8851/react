@@ -9,6 +9,7 @@ function App() {
   let [따봉, 따봉변경] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
+  let [입력값, 입력값변경] = useState('');
 
 
   return (
@@ -50,6 +51,10 @@ function App() {
         })
       }
 
+      <input onChange={ (e) => {
+        입력값변경(e.target.value);
+        console.log(입력값);
+      }} />
 
       {
         modal == true ? <Modal title={title} 글제목={글제목} /> : null
