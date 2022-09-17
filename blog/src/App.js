@@ -28,7 +28,7 @@ function App() {
       <button onClick={()=>{
         let copy = [...글제목];   //카피본을 만들어 얘를 수정하는것이 좋음.
         console.log(copy == 글제목);
-         copy[0] = '여자 코트 추천';
+        copy[0] = '여자 코트 추천';
         
         글제목변경(copy);
       }}>글수정</button>
@@ -53,8 +53,18 @@ function App() {
 
       <input onChange={ (e) => {
         입력값변경(e.target.value);
-        console.log(입력값);
       }} />
+
+
+      {/* 입력버튼클릭 시 글 추가하기 */}
+      <button onClick={()=>{
+        let copy = [...글제목];
+        copy.unshift(입력값);
+        글제목변경(copy);
+      }}>글발행</button>
+
+
+
 
       {
         modal == true ? <Modal title={title} 글제목={글제목} /> : null
