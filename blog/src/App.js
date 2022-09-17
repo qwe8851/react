@@ -46,6 +46,12 @@ function App() {
              }}>👍</span> {따봉[i]} 
             </h4>
             <p>2월 17일 발행</p>
+            {/* 삭제버튼 만들기 */}
+            <button onClick={()=>{
+              let copy = [...글제목];
+              copy.splice(i, 1);
+              글제목변경(copy);
+            }}>삭제</button>
           </div>   
           )     
         })
@@ -64,6 +70,7 @@ function App() {
       }}>글발행</button>
 
 
+      
 
 
       {
