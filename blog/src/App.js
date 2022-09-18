@@ -104,9 +104,31 @@ function App() {
           <p>상세내용</p>
           <button onClick={()=> 글제목변경()}>글 수정</button>
         </div>
-    )        
+      )        
+    }
   }
-}
+
+
+  // class로 Modal2 컴포넌트 생성
+  class Modal2 extends React.Component {
+    constructor(props){     // props
+      super(props);         // props 쓸 때는 this.props
+      // state 생성
+      this.state = {
+        name : 'kim',
+        age : 20
+      }
+    }
+    render(){
+      return(
+        <div>안녕{this.state.age}     
+          <button onClick={ ()=>{
+            this.setState({age: 21});   // state 변경
+          }}>버튼</button>
+        </div>
+      )
+    }
+  }
 
 
 
