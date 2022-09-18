@@ -122,7 +122,7 @@ function App() {
     render(){
       return(
         // props 쓸 때는 {this.props.props이름}
-        <div>안녕{this.state.age}     
+        <div>안녕{this.state.age}
           <button onClick={ ()=>{
             this.setState({age: 21});   // state 변경
           }}>버튼</button>
