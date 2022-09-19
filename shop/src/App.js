@@ -1,6 +1,7 @@
 // 부트스트랩 컴포넌트들 import
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import './App.css';
+import bg from './img/bg.png';
 
 function App() {
   return (    
@@ -19,7 +20,7 @@ function App() {
         </Container>
       </Navbar>
 
-      <Button variant="primary">Primary</Button>{' '}
+      <div className="main-bg" style={{backgroundImage : 'url('+bg+')'}}></div>
 
     </div>
   );
