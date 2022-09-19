@@ -1,5 +1,5 @@
 // 부트스트랩 컴포넌트들 import
-import { Button, Navbar, Container, Nav } from 'react-bootstrap';
+import { Navbar, Container, Nav,Row, Col } from 'react-bootstrap';
 import './App.css';
 import bg from './img/bg.png';
 
@@ -22,6 +22,26 @@ function App() {
 
       <div className="main-bg" style={{backgroundImage : 'url('+bg+')'}}></div>
 
+      <Container>
+        <Row>
+          <Col>
+            <img src="/logo192.pngs" width="80%"/>
+            <h4>상품명</h4>
+            <p>상품설명</p>
+          </Col>
+          <Col>
+            <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="80%"/>
+            <h4>상품명</h4>
+            <p>상품설명</p>
+          </Col>
+          <Col>
+            <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="80%"/>
+            <h4>상품명</h4>
+            <p>상품설명</p>
+          </Col>
+        </Row>
+      </Container>
+   
     </div>
   );
 }
