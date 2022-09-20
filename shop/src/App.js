@@ -1,12 +1,19 @@
 // 부트스트랩 컴포넌트들 import
+import { useState } from 'react';
 import { Navbar, Container, Nav,Row, Col } from 'react-bootstrap';
 import './App.css';
-import bg from './img/bg.png';
+import data from './data.js';
+
+
 
 function App() {
+
+  // state 생성
+  let [shoes, setShoes] = useState(data);
+
   return (    
+
     <div className="App">
-      {/* 부트스트랩에서 가져온 건 import가 필요함 */}
 
       {/* navbar */}
       <Navbar bg="dark" variant="dark">
@@ -20,30 +27,47 @@ function App() {
         </Container>
       </Navbar>
 
-      <div className="main-bg" style={{backgroundImage : 'url('+bg+')'}}></div>
+    {/* 백그라운드 이미지 삽입 */}
+      <div className="main-bg"></div>
 
+      
+      
       <Container>
         <Row>
-          <Col>
-            <img src="/logo192.pngs" width="80%"/>
-            <h4>상품명</h4>
-            <p>상품설명</p>
-          </Col>
-          <Col>
-            <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="80%"/>
-            <h4>상품명</h4>
-            <p>상품설명</p>
-          </Col>
-          <Col>
-            <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="80%"/>
-            <h4>상품명</h4>
-            <p>상품설명</p>
-          </Col>
+          {/* shoes를 기준으로 도는 map */}
+          {
+            shoes.map((a,i) => {
+              return(
+                <Card shoes={shoes[i]} i={i}></Card>
+              )
+            })
+          }
         </Row>
       </Container>
    
     </div>
+
   );
+
+
+
+
+
 }
 
-export default App;
+
+// component 생성
+function Card(props) {
+    return(
+      <Col>
+        <img src={'https://codingapple1.github.io/shop/shoes' + (props.i+1) +'.jpg'} width="80%"/>
+        <h4>{props.shoes.title}</h4>
+        <p>{props.shoes.price}</p>
+      </Col>
+    )
+}
+
+
+
+
+ export default App;
