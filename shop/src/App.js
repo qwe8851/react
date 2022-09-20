@@ -5,14 +5,12 @@ import './App.css';
 import data from './data.js';
 
 
-
 function App() {
 
   // state 생성
   let [shoes, setShoes] = useState(data);
 
   return (    
-
     <div className="App">
 
       {/* navbar */}
@@ -29,8 +27,6 @@ function App() {
 
     {/* 백그라운드 이미지 삽입 */}
       <div className="main-bg"></div>
-
-      
       
       <Container>
         <Row>
@@ -38,7 +34,7 @@ function App() {
           {
             shoes.map((a,i) => {
               return(
-                <Card shoes={shoes[i]} i={i}></Card>
+                // <Card shoes={shoes[i]} i={i}></Card>  
               )
             })
           }
@@ -48,13 +44,7 @@ function App() {
     </div>
 
   );
-
-
-
-
-
 }
-
 
 // component 생성
 function Card(props) {
@@ -66,8 +56,6 @@ function Card(props) {
       </Col>
     )
 }
-
-
 
 
  export default App;
