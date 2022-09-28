@@ -458,6 +458,7 @@ root.render(
 ); 
 ```
 <br><br><br>
+
 ### 라우터 페이지 나누기 
 ```js
 import { Routes, Route, Link } from 'react-router-dom'
@@ -473,17 +474,113 @@ function App(){
 }
 ```
 1. 여러가지 컴포넌트 import
-2. <Routes>를 만들고 그 안에 <Route>를 작성
+2. <Routes>를 만들고 그 안에 `<Route>`를 작성
 3. `<Route path="/url경로" element={<보여줄html>} />`
 
 
 
 
+<br><br><br>
+
+## 리엑트 라우터 2 : navigate, nested routes, outlet
+`import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'` import
+<br><br>
+
+### useNavigate()
+페이지 이동은 Link를 써도 되지만 useNavigate()로도 이동가능.
+```js
+function App(){
+  let navigate = useNavigate()
+  
+  return (
+    (생략)
+    <button onClick={()=>{ navigate('/detail') }}>이동버튼</button>
+  )
+}
+```
+- useNavigate()를 쓰면 그 자리에 페이지를 이동시켜주는 함수가 남음. 
+- navigate('/detail')코드가 실행되면 /detail페이지로 이동함.
+- navigate(2) 숫자 넣으면 앞으로 가기, 뒤로가기 기능 개발도 가능
+  **(-1) 넣으면 뒤로 1번 가기
+  (2) 넣으면 앞으로 2번 가기**
+
+
+<br><br>
+
+### 404페이지
+유저가 이상한 경로로 접속했을때는 "없는 페이지"라는 문구를 보여주고싶음
+```js 
+<Route path="*" element={ <div>없는페이지임</div> } />
+```
+`<Route path="*>` 하나 맨 밑에 만들어두면 됨.
+* 경로는 모든 경로를 뜻해서
+위에 만들어둔 /detail이 아닌 다른 페이지로 접속 시 *경로로 안내해줌.
+
+<br><br>
+
+### 서브경로 만들 수 있는 nested routes
+/about/member로 접속하면 회사멤버 소개 페이지
+/about/location으로 접속하면 회사위치 소개 페이지를 만들고싶으면
+
+```js
+<Route path="/about/member" element={ <div>멤버들</div> } />
+<Route path="/about/location" element={ <div>회사위치</div> } />
+```
+이렇게 만들어도 되겠지만
+
+```js
+<Route path="/about" element={ <About/> } >  
+  <Route path="member" element={ <div>멤버들</div> } />
+  <Route path="location" element={ <div>회사위치</div> } />
+</Route>
+```
+이렇게 만들어도 됨.
+
+`<Route>`안에 `<Route>`를 넣을 수 있는데 이걸 Nested routes라고 부름
+
+이렇게 쓰면 
+**/about.member**로 접속 시 `<About>`&`<div>멤버들</div>`를 보여줌
+**/about.location**로 접속 시 `<About>`&`<div>회사위치</div>`를 보여줌
+
+<br><br>
+
+#### <div>가 안보임?
+위처럼만 코드를 짜면 
+/about/member로 접속 시 **`<About>`안에** `<div>멤버들</div>`을 보여줌.
+그래서 `<About>`컴포넌트 안에 `<div>`를 어디다 보여줄지 표기해야 잘 보여줌.
+
+```js
+<Route path="/about" element={ <About/> } >  
+  <Route path="member" element={ <div>멤버들</div> } />
+  <Route path="location" element={ <div>회사위치</div> } />
+</Route>
+```
+```js
+function About(){
+  return (
+    <div>
+      <h4>about페이지임</h4>
+      <Outlet></Outlet>
+    </div>
+  )
+}
+```
+위에 import해온 `<Outlet>`은 nested routes안에 element들을 어디에 보여줄지 표기하는 곳.
+
+/about/member로 접속 시 `<Outlet>`자리에서 아까의 `<div>`박스들이 잘 보임. 
+그래서 유사한 서브페이지들이 많이 필요하다면 이렇게 만드는게 유용할 듯 함!
 
 
 
 
 
+<br><br><br>
+
+## 리엑트 프로젝트 폴더 구조
+ - 컴포넌트 : components
+ - 페이지 : routes or pages
+ - 함수 : utils
+ 이런식으로 비슷한 .js파일끼리 한 폴도로 묶어두어야 좋은 폴더구조
 
 
 
