@@ -438,8 +438,43 @@ function Modal(props){
 #### +) 이벤트버블링
 - 상위 html로 퍼지는 이벤트 버블링을 막기위해서는 `e.stopPropagation()`을 해주면 됨.
 
+<!-- 220928 -->
+<br><br><br>
 
+## 리엑트 라우터 1 : 셋팅 및 기본 라우팅
+### react-router-dom 설치
+1. 터미널에 `npm install react-router-dom@6`설치 
+2. index.js파일에서 </App>을 <BrouserRouter>로 감싸줌 (import 필수)
+```js
+import { BrowserRouter } from "react-router-dom";
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+  </React.StrictMode>
+); 
+```
+<br><br><br>
+### 라우터 페이지 나누기 
+```js
+import { Routes, Route, Link } from 'react-router-dom'
+
+function App(){
+  return (
+    (생략)
+    <Routes>
+      <Route path="/detail" element={ <div>상세페이지임</div> } />
+      <Route path="/about" element={ <div>어바웃페이지임</div> } />
+    </Routes>
+  )
+}
+```
+1. 여러가지 컴포넌트 import
+2. <Routes>를 만들고 그 안에 <Route>를 작성
+3. `<Route path="/url경로" element={<보여줄html>} />`
 
 
 
