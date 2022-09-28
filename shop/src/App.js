@@ -3,29 +3,31 @@ import { useState } from 'react';
 import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
 import './App.css';
 import data from './data.js';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import Detail from './routes/Detail';
 
 function App() {
 
   // state 생성
-  let [shoes, setShoes] = useState(data);
+  let [shoes] = useState(data);
+  let navigate = useNavigate();
 
   return (    
     <div className="App">  
 
       {/* navbar */}
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="light" variant="light">
         <Container>
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link to="#features">Cart</Nav.Link>
+            <Nav.Link onClick={()=>{ navigate('/')}}>Home</Nav.Link>
+            <Nav.Link onClick={()=>{ navigate('/detail')}}>Detail</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
 
-      <Link to="/">홈</Link>
-      <Link to="/detail">상세페이지</Link>
+      {/* <Link to="/">홈</Link>
+      <Link to="/detail">상세페이지</Link> */}
 
       <Routes>
         <Route path="/" element={
@@ -40,14 +42,31 @@ function App() {
           </Container>
           </>
         } />
-        <Route path="/detail" element={<div>상세페이지임</div>} />
-        <Route path="/about" element={<div>어바웃페이지</div>}/>
+        <Route path="/detail" element={ <Detail/> } />
+        <Route path="/about" element={ <About/> }> 
+        {/* nested routes */}
+          <Route path="member" element={ <div>멤버</div> } />
+          <Route path="location" element={<About/> } />
+        </Route>
+        {/* 404페이지 */}
+        <Route path="*" element={ <div>없는 페이지 입니다. </div> } />
       </Routes>
       </div>
   );
 }
 
 // component 생성
+function About(){
+  return(
+    <div>
+      <h4>회사정보</h4>
+      <Outlet></Outlet>
+    </div>
+  )
+}
+
+
+
 function Card(props) {
     return(
       <Col>
