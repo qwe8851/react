@@ -48,6 +48,11 @@ function App() {
           <Route path="member" element={ <div>멤버</div> } />
           <Route path="location" element={<About/> } />
         </Route>
+        {/* 이벤트 nested routes */}
+        <Route path="/event" element={ <Event/> }> 
+          <Route path="one" element={ <p>첫 주문시 양배추즙 서비스</p> } />
+          <Route path="two" element={ <p>생일기념 쿠폰 받기</p> } />
+        </Route>
         {/* 404페이지 */}
         <Route path="*" element={ <div>없는 페이지 입니다. </div> } />
       </Routes>
@@ -56,6 +61,15 @@ function App() {
 }
 
 // component 생성
+function Event(){
+  return(
+    <>
+      <h4>오늘의 이벤트</h4>
+      <Outlet></Outlet>
+    </>
+  )
+}
+
 function About(){
   return(
     <div>
@@ -64,7 +78,6 @@ function About(){
     </div>
   )
 }
-
 
 
 function Card(props) {
