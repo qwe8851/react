@@ -572,8 +572,6 @@ function About(){
 
 
 
-
-
 <br><br><br>
 
 ## 리엑트 프로젝트 폴더 구조
@@ -583,7 +581,59 @@ function About(){
  이런식으로 비슷한 .js파일끼리 한 폴도로 묶어두어야 좋은 폴더구조
 
 
+<br><br><br>
 
+## styled-components 
+#### 1. 설치 
+`npm install style-components`
+
+#### 2. import 
+`import styled from 'styled-components`
+
+#### 3. 형식
+``` js
+styled.{html태그} ` ~style~ `
+```
+
+##### Sample code
+```js
+import styled from 'styled-components';
+
+let Box = styled.div`
+    padding : 20px;
+    color : grey;
+`;
+let Btn = styled.button`
+    backgroud : ${props.bg => props.bg};
+    color : ${props => pros.bg=='blue'? 'white' : 'balck'};
+`;
+
+function Detail(){
+    retunr(
+        <div>
+            <Box>
+                <Btn>버튼임</Btn>
+            </Box>
+        </div>
+    )
+}
+```
+
+### 장단점
+#### 장점
+1. CSS 파일 오픈할 필요없이 js에서 바로 스타일링 가능
+2. 다른 js파일을 오염시키지 않음.
+    - css 이름 작명으로 스타일 오염을 막을수도 있음 `컴포넌트명.module.css`
+3. 로딩시간 단축
+    - 필요한 css만 불러오므로 로딩시간이 단축됨
+4. props로 재활용 가능
+
+
+#### 단점
+1. js파일이 복잡해짐
+   - 이 컴포넌트가 styled인지 아니면 일반 컴포넌트인지 구분도 힘듦
+2. js 파일 간 중복 디자인 시 import 
+   - import해서 쓸 바에 걍 CSS파일 씀 
 
 
 
