@@ -2,37 +2,27 @@
 
 import { useEffect, useState } from "react";
 import{ useParams } from "react-router-dom";
-import styled from 'styled-components';
 
-let Box = styled.div`
-    padding : 20px;
-    color : grey;
-`;
-
-let YellowBtn = styled.button`
-  background : ${ props => props.bg };
-  color : ${ props => props.bg == 'blue' ? 'white' : 'black' };
-  padding : 10px;
-`;
 
 function Detail(props) {
-
-    return(
-        <Box>
-            <YellowBtn bg="orange">버튼</YellowBtn>
-            <YellowBtn bg="blue">버튼</YellowBtn>
-        </Box>
-    )
-    useEffect(()=>{
-        console.log('안녕');
-    })
 
     let {id} = useParams();
     let findProduct = props.shoes.find((x)=>x.id == id);
     let [count, setCount] = useState(0);
+    let [alert, setAlert] = useState(true);
+
+    useEffect(()=>{
+        setTimeout(() => {
+            setAlert(false);
+        }, 2000);
+    })
 
     return (
         <div className="container">
+            {
+                alert == true? <div className="alert alert-warning">2초 이내 구매 시 할인</div> : null
+            }
+            {count}
             <button onClick ={()=>{setCount(count+1)}}>버튼</button>
             <div className="setCount">
                 <div className="col-md-6">
