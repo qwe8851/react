@@ -640,12 +640,35 @@ function Detail(){
 
 
 
+<!-- 221004 -->
 
+<br><br><br>
 
+## Ajax(axios)
+#### 1. 설치 
+`npm install axios`
 
+#### 2. import 
+`import axios from 'axios'`
 
+#### 3. 형식
+`axios.get('url')`
 
-
+##### Sample code
+```js
+<button onClick={()=>{
+  axios.get('url').then((result)=>{
+    console.log(result.data);
+  }).catch(()=>{
+    console.log('error');
+  })
+}}
+```
+버튼 클릭 시 url로 get요청을 보냄.
+- then() : 성공하면 result로 데이터를 받아올 수 있음
+근데 여기 들어오는 데이터에는 여러 부가적인 정보들이 같이 들어오게 됨
+그래서 result.data로 데이터를 뽑아야 실질적인 데이터를 가져올 수 있음.
+- catch() : 만약 서버에 요청을 실패했을때 catch안의 코드를 실행할 수 있음
 
 
 

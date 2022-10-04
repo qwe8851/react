@@ -5,11 +5,12 @@ import './App.css';
 import data from './data.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from './routes/Detail';
+import axios from 'axios';
 
 function App() {
 
   // state 생성
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
 
   return (    
@@ -40,8 +41,17 @@ function App() {
               })}
             </Row>
           </Container>
+          <button onClick={()=>{
+            axios.get('https://codingapple1.github.io/shop/data2.json').then((result)=>{
+              let copyShoes = [...shoes, ...result.data];
+              setShoes(copyShoes);
+            }).catch(()=>{
+              console.log("실패함");
+            })
+          }}>더보기</button>
           </>
         } />
+
         <Route path="/detail/:id" element={ <Detail shoes={shoes} /> } />
         <Route path="/about" element={ <About/> }> 
         {/* nested routes */}
