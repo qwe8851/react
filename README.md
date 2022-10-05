@@ -671,7 +671,25 @@ function Detail(){
 - catch() : 만약 서버에 요청을 실패했을때 catch안의 코드를 실행할 수 있음
 
 
+<!-- 221004 -->
 
+<br><br><br>
+
+## Ajax(post, fetch))
+#### 1. POST
+`axips.post('URL', {name:'kim'})`
+이렇게 실행하면 서버로 {name:'kim'}자료가 전송됨.
+완료 시 특정 코드를 실행하고 싶으면 이것도 뒤에 .then()불이면 됨.
+
+#### 2. 동시에 AJAX요청 여러개 날리기
+`Promise.all([axios.get('URL1'), axios.get('URL2')] )`
+이렇게 하면 URL1, URL2로 GET요청을 동시에 해주고 
+뒤에 .then()을 붙이면 둘 다 완료 시 특정 코드를 실행해줌 
+
+#### 3. fetch?
+`fetch('URL').then(결과 => 결과.json()).then((결과)=>{console.log(결과)})`
+쌩자바스크립트 문법인 fetch()를 이용해서 GET/POST 요청이 가능
+이건 JSON → object/array이렇게 자동으로 바꿔주지 않아서 직접 바꾸는 과정이 필요함
 
 
 

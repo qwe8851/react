@@ -27,9 +27,6 @@ function App() {
         </Container>
       </Navbar>
 
-      {/* <Link to="/">홈</Link>
-      <Link to="/detail">상세페이지</Link> */}
-
       <Routes>
         <Route path="/" element={
           <>
@@ -41,10 +38,11 @@ function App() {
               })}
             </Row>
           </Container>
+          {/* 서버통신 */}
           <button onClick={()=>{
             axios.get('https://codingapple1.github.io/shop/data2.json').then((result)=>{
-              let copyShoes = [...shoes, ...result.data];
-              setShoes(copyShoes);
+              let copy = [...shoes, ...result.data];
+              setShoes(copy);
             }).catch(()=>{
               console.log("실패함");
             })
