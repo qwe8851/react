@@ -59,8 +59,7 @@ function Detail(props) {
 
 function TabContent({tab}){
     console.log({tab});
-    return [ <div>내용0</div>, <div>내용1</div>, <div>내용2</div>][{tab}.tab]
-    // 왜 tab.tab으로 해야 들어가는지는 좀 더 해봐야 할 듯 하다 .. 10/05
+    return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]
   }
 
 
