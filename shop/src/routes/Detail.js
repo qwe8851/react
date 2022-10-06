@@ -1,8 +1,9 @@
 /* eslint-disable */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Nav } from "react-bootstrap";
 import{ useParams } from "react-router-dom";
+import {Context1} from './../App.js';
 
 
 function Detail(props) {
@@ -12,6 +13,7 @@ function Detail(props) {
     let [count, setCount] = useState(0);
     let [alert, setAlert] = useState(true);
     let [tab, setTab] = useState(0);
+    let {재고} = useContext(Context1);
 
     useEffect(()=>{
         setTimeout(() => {
@@ -24,7 +26,6 @@ function Detail(props) {
             {
                 alert == true? <div className="alert alert-warning">2초 이내 구매 시 할인</div> : null
             }
-            {count}
             <button onClick ={()=>{setCount(count+1)}}>버튼</button>
             <div className="setCount">
                 <div className="col-md-6">

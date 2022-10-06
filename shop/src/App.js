@@ -1,5 +1,5 @@
 // 부트스트랩 컴포넌트들 import
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
 import './App.css';
 import data from './data.js';
@@ -7,11 +7,13 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from './routes/Detail';
 import axios from 'axios';
 
+
 function App() {
 
   // state 생성
   let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
+  let [재고, 재고변경] = useState([10, 11, 12]);
 
   return (    
     <div className="App">  
@@ -50,7 +52,11 @@ function App() {
           </>
         } />
 
-        <Route path="/detail/:id" element={ <Detail shoes={shoes} /> } />
+        <Route path="/detail/:id" element={ 
+          <Context1.Provider value={{재고, shoes}}>
+            <Detail shoes={shoes} />
+          </Context1.Provider>
+         } />
         <Route path="/about" element={ <About/> }> 
         {/* nested routes */}
           <Route path="member" element={ <div>멤버</div> } />
@@ -100,4 +106,5 @@ function Card(props) {
 
 
 
- export default App;
+export default App;
+export let Context1 = React.createContext();
