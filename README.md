@@ -692,6 +692,50 @@ function Detail(){
 이건 JSON → object/array이렇게 자동으로 바꿔주지 않아서 직접 바꾸는 과정이 필요함
 
 
+<!-- 221009 -->
+
+<br><br><br>
+
+## Redux
+#### 1. Redux Toolkit 설치
+##### 1. store.js파일 생성
+`npm install @reduxjs/toolkit react-redux`
+💡 package.json파일의 "react"와 "react-dom" 버전이 18.1.X 이상이어야 잘 동작이 됨.
+
+#### 2. Redux 셋팅
+```js
+import { configureStore } from '@reduxjs/toolkit'
+
+export default configureStore({
+  reducer: { }
+}) 
+```
+state들을 보관하는 파일인 store.js파일을 만들어서 위에 코드 복붙. 
+(src폴도에 만들엇음)
+
+##### 2. index.js에서 import
+```js
+import { Provider } from "react-redux";
+import store from './store.js'
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
+); 
+```
+index.js파일에서 Provider라는 컴포넌트와 아까 작성한 파일을 import해옴.
+그리고 밑에 `<Provider store={import해온거}>` 이걸로 `<App/>`을 감싸면 끝
+
+그럼 이제 `<App>`과 그 모든 자식컴포넌트들은 store.js에 있던 state들을 맘대로 꺼내서 쓸 수 있음.
+
+
+
 
 
 

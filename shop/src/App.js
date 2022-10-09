@@ -6,6 +6,7 @@ import data from './data.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from './routes/Detail';
 import axios from 'axios';
+import Cart from './routes/Cart.js';
 
 
 function App() {
@@ -69,7 +70,12 @@ function App() {
         </Route>
         {/* 404페이지 */}
         <Route path="*" element={ <div>없는 페이지 입니다. </div> } />
+        {/* 장바구니 페이지 */}
+          <Route path="/cart" element={<Cart/>} />
       </Routes>
+
+      
+
       </div>
   );
 }
