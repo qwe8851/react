@@ -1,12 +1,11 @@
-// 부트스트랩 컴포넌트들 import
-import React, { useState } from 'react';
-import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
-import './App.css';
-import data from './data.js';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
-import Detail from './routes/Detail';
-import axios from 'axios';
-import Cart from './routes/Cart.js';
+import React, { useState } from 'react'
+import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap'
+import './App.css'
+import data from './data.js'
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import Detail from './routes/Detail'
+import axios from 'axios'
+import Cart from './routes/Cart.js'
 
 
 function App() {
@@ -74,10 +73,8 @@ function App() {
           <Route path="/cart" element={<Cart/>} />
       </Routes>
 
-      
-
       </div>
-  );
+  )
 }
 
 // component 생성
@@ -112,5 +109,5 @@ function Card(props) {
 
 
 
-export default App;
-export let Context1 = React.createContext();
+export default App
+export let Context1 = React.createContext()

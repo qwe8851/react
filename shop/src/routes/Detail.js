@@ -1,9 +1,9 @@
 /* eslint-disable */
 
-import { useEffect, useState, useContext } from "react";
-import { Nav } from "react-bootstrap";
-import{ useParams } from "react-router-dom";
-import {Context1} from './../App.js';
+import { useEffect, useState, useContext } from "react"
+import { Nav } from "react-bootstrap"
+import{ useParams } from "react-router-dom"
+import {Context1} from './../App.js'
 
 
 function Detail(props) {
@@ -55,7 +55,7 @@ function Detail(props) {
             {/* 컴포넌트 사용 */}
             <TabContent tab={tab} />
         </div>
-    );
+    )
 }
 
 function TabContent({tab}){
@@ -76,4 +76,4 @@ function TabContent({tab}){
 
 
 
-export default Detail;
+export default Detail
