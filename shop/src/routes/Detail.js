@@ -2,8 +2,10 @@
 
 import { useEffect, useState, useContext } from "react"
 import { Nav } from "react-bootstrap"
-import{ useParams } from "react-router-dom"
-import {Context1} from './../App.js'
+import { useParams } from "react-router-dom"
+import { Context1 } from './../App.js'
+import { addItem } from '../store.js';
+import { useDispatch } from "react-redux";
 
 
 function Detail(props) {
@@ -14,6 +16,7 @@ function Detail(props) {
     let [alert, setAlert] = useState(true);
     let [tab, setTab] = useState(0);
     let {재고} = useContext(Context1);
+    let dispatch = useDispatch()
 
     useEffect(()=>{
         setTimeout(() => {
@@ -35,7 +38,9 @@ function Detail(props) {
                     <h4 className="pt-5">{findProduct.title}</h4>
                     <p>{findProduct.content}</p>
                     <p>₩{findProduct.price}</p>
-                    <button className="btn btn-danger">주문하기</button>
+                    <button className="btn btn-danger" onClick={()=>{
+                        dispatch(addItem({id : state, name : 'Red Knit', count : 1}))
+                    }}>주문하기</button>
                 </div>
             </div>
             
@@ -69,7 +74,7 @@ function TabContent({tab}){
         }
     }, [tab])
     
-    return <div className={"start "+fade}>
+    return <div className={"start"+fade}>
         {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]}
     </div>
   }

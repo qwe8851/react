@@ -1,7 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-import user from './.store/userSlice.js'
-
-
+import user from './store/userSlice.js'
 
 
 let cart = createSlice({
@@ -11,14 +9,15 @@ let cart = createSlice({
         {id : 2, name : 'Grey Yordan', count : 1}
     ],
     reducers :{
-        // 왜 안되는거지..
-        changeCount(state){
-            state[0].count += 1
+        addCount(state, action){
+            let number = state.findIndex((element)=>{ return element.id === action.payload })
+            state[number].count++
+        },
+        addItem(state, action){
+            state.push.id(action.payload)
         }
     }
 })
-
-
 
 
 export default configureStore({
@@ -28,3 +27,4 @@ export default configureStore({
    }
 });
 
+export let { addCount, addItem } =  cart.actions
