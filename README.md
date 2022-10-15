@@ -698,91 +698,91 @@ function Detail(){
 
 ## Redux
 ### 1. Redux Toolkit 설치
-#### 1-1. store.js파일 생성
-`npm install @reduxjs/toolkit react-redux`
-💡 package.json파일의 "react"와 "react-dom" 버전이 18.1.X 이상이어야 잘 동작이 됨.
+> #### 1-1. store.js파일 생성
+> `npm install @reduxjs/toolkit react-redux`
+> 💡 package.json파일의 "react"와 "react-dom" 버전이 18.1.X 이상이어야 잘 동작이 됨.
 
-#### 1-2. Redux 셋팅
-```js
-import { configureStore } from '@reduxjs/toolkit'
-
-export default configureStore({
-  reducer: { }
-}) 
-```
-state들을 보관하는 파일인 store.js파일을 만들어서 위에 코드 복붙. 
+> #### 1-2. Redux 셋팅
+> ```js
+> import { configureStore } from '@reduxjs/toolkit'
+> 
+> export default configureStore({
+>   reducer: { }
+> }) 
+> ```
+> state들을 보관하는 파일인 store.js파일을 만들어서 위에 코드 복붙. 
 (src폴도에 만들엇음)
 
-#### 1-3. index.js에서 import
-```js
-import { Provider } from "react-redux";
-import store from './store.js'
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
-); 
-```
-index.js파일에서 Provider라는 컴포넌트와 아까 작성한 파일을 import해옴.
+> #### 1-3. index.js에서 import
+> ```js
+> import { Provider } from "react-redux";
+> import store from './store.js'
+> 
+> const root = ReactDOM.createRoot(document.getElementById('root'));
+> root.render(
+>   <React.StrictMode>
+    > <Provider store={store}>
+>       <BrowserRouter>
+>         <App />
+>       </BrowserRouter>
+>     </Provider>
+>   </React.StrictMode>
+> ); 
+> ```
+> index.js파일에서 Provider라는 컴포넌트와 아까 작성한 파일을 import해옴.
 그리고 밑에 `<Provider store={import해온거}>` 이걸로 `<App/>`을 감싸면 끝
-
-그럼 이제 `<App>`과 그 모든 자식컴포넌트들은 store.js에 있던 state들을 맘대로 꺼내서 쓸 수 있음.
+> 
+> 그럼 이제 `<App>`과 그 모든 자식컴포넌트들은 store.js에 있던 state들을 맘대로 꺼내서 쓸 수 있음.
 
 <br>
 
 ### 2. store에 state 보관하고 쓰기
-#### 2-1. Redux store에 state 보관하는 법 
-step 1. createSlice()로 state 생성
-step 2. configureStore() 안에 등록
-```js
-import { configureStore, createSlice } from '@reduxjs/toolkit'
-
-let user = createSlice({
-  name : 'user',
-  initialState : 'kim'
-})
-
-export default configureStore({
-  reducer: {
-    user : user.reducer
-  }
-}) 
-```
-1. createSlice() improt 후 
+> #### 2-1. Redux store에 state 보관하는 법 
+> **step 1.** createSlice()로 state 생성<br>
+> **step 2.** configureStore() 안에 등록
+> ```js
+> import { configureStore, createSlice } from '@reduxjs/toolkit'
+> 
+> let user = createSlice({
+>   name : 'user',
+>   initialState : 'kim'
+> })
+> 
+> export default configureStore({
+>   reducer: {
+>     user : user.reducer
+>   }
+> }) 
+> ```
+> 1. createSlice() improt 후 
 `{name : 'state이름', 'initialState : 'state값'}` 이렇게 넣어주면 state하나가 새성됨.
 (createSlice()는 useState()와 용도가 비슷)
-
-2. state등록은 configureStore()안에 
+> 
+> 2. state등록은 configureStore()안에 
 ` 작명 : createSlice만든거.reducer}` 해주면 등록 끝.
 여기 등록한 state는 모든 컴포넌트가 자유롭게 사용 가능함.
 
 
-#### 2-2. Redux store에 있는 state 가져다 쓰는 법 
-```js
-(Cart.js)
-
-import { useSelector } from "react-redux"
-
-function Cart(){
-  let a = useSelector((state) => { return state } )
-  console.log(a)
-
-  return (생략)
-}
-```
-아무 컴포넌트에서 `useSelector(state =>{ return state})`로 쓰면 store에 있는 모든 state가 그 자리에 남음.
-
-이걸 변수에 저장하면 store.js에서 등록해 둔 {user:'kim'}이 출력됨
-
-📎 `let a = useSelector((state) => state.user ) ` 이런식으로 축약도 가능
-
-💡 간단한거 만들 때 or 컴포넌트가 몇 개 없을 때 => 이럴때는 그냥 props를 쓰는게 코드가 더 짧음.
+> #### 2-2. Redux store에 있는 state 가져다 쓰는 법 
+> ```js
+> (Cart.js)
+> 
+> import { useSelector } from > "react-redux"
+> 
+> function Cart(){
+>   let a = useSelector((state) => { return state } )
+>   console.log(a)
+> 
+>   return (생략)
+> }
+> ```
+> 아무 컴포넌트에서 `useSelector(state =>{ return state})`로 쓰면 store에 있는 모든 state가 그 자리에 남음.
+> 
+> 이걸 변수에 저장하면 store.js에서 등록해 둔 {user:'kim'}이 출력됨
+> 
+> 📎 `let a = useSelector((state) => > state.user ) ` 이런식으로 축약도 가능
+> 
+> 💡 간단한거 만들 때 or 컴포넌트가 몇 개 없을 때 => 이럴때는 그냥 props를 쓰는게 코드가 더 짧음.
 
 
 
@@ -793,53 +793,52 @@ function Cart(){
 2. exprot
 3. import해서 쓰면 되는데, dicpatch()로 감싸서 써야함
 
-#### 3-1. store의 state 변경하는 법
-##### 1) store.js안에 state 수정함수 생성
-```js
-let user = createSlice({
-  name : 'user',
-  initialState : 'kim',
-  reducers : {
-    changeName(state){
-      return 'john ' + state
-    }
-  }
-}) 
-```
-slice 안에 `reducers : { }`열고 이 안에 함수를 만들면 됨.
-- 함수작명은 맘대로
-- 파라미터 하나를 넣어주면 그건 기존 state가 됨.
-- return 우측에 새로운 state를 입력하면 그걸로 state를 갈아줌.
-
-
-##### 2) export
-```js
-export let { changeName } = user.actions 
-```
-이런 코드를 store.js밑에 추가하면 됨
-`slice이름.actions`라고 적으면 state변경함수가 전부 그 자리에 출력됨.
-
-이걸 변수에 저장했다가 export하라는 뜻임
-
-##### 3) 원할 때 import 사용 
-ex) Cart.js에 있는 버튼을 클릭하면 state를 'kim'에서 'jhon kim'으로 변경하고 싶으면 
-```js
-(Cart.js)
-
-import { useDispatch, useSelector } from "react-redux"
-import { changeName } from "./../store.js"
-
-(생략) 
-
-<button onClick={()=>{
-  dispatch(changeName())
-}}>버튼임</button> 
-```
-이렇게 코드짜면 됨
-- store.js에서 원하는 state 변경함수 가져오고
-- useDispatch라는 것도 라이브러리에서 가져오기.
-- 그리고 `dispatch(State변경함수())`이렇게 감싸서 실행하면 state변경 끝!
-✔️ dispatch로 꼭 감싸야 실행됨!
+> #### 3-1. store의 state 변경하는 법
+>> ##### 1) store.js안에 state 수정함수 생성
+>> ```js
+>> let user = createSlice({
+>>   name : 'user',
+>>   initialState : 'kim',
+>>   reducers : {
+>>     changeName(state){
+>>       return 'john ' + state
+>>     }
+>>   }
+>> }) 
+>> ```
+>> slice 안에 `reducers : { }`열고 이 안에 함수를 만들면 됨.
+>> - 함수작명은 맘대로
+>> - 파라미터 하나를 넣어주면 그건 기존 state가 됨.
+>> - return 우측에 새로운 state를 입력하면 그걸로 state를 갈아줌.
+>
+>> ##### 2) export
+>> ```js
+>> export let { changeName } = user.actions 
+>> ```
+>> 이런 코드를 store.js밑에 추가하면 됨
+>> `slice이름.actions`라고 적으면 state변경함수가 전부 그 자리에 출력됨.
+>> 
+>> 이걸 변수에 저장했다가 export하라는 뜻임
+>
+>> ##### 3) 원할 때 import 사용 
+>> ex) Cart.js에 있는 버튼을 클릭하면 state를 'kim'에서 'jhon kim'으로 변경하고 싶으면 
+>> ```js
+>> (Cart.js)
+>> 
+>> import { useDispatch, useSelector } from "react-redux"
+>> import { changeName } from "./../store.js"
+>> 
+>> (생략) 
+>> 
+>> <button onClick={()=>{
+>>   dispatch(changeName())
+>> }}>버튼임</button> 
+>> ```
+>> 이렇게 코드짜면 됨
+>> - store.js에서 원하는 state 변경함수 가져오고
+>> - useDispatch라는 것도 라이브러리에서 가져오기.
+>> - 그리고 `dispatch(State변경함수())`이렇게 감싸서 실행하면 state변경 끝!
+>> ✔️ dispatch로 꼭 감싸야 실행됨!
 
 
 
