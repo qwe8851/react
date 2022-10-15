@@ -15,6 +15,16 @@ function App() {
   let navigate = useNavigate();
   let [재고, 재고변경] = useState([10, 11, 12]);
 
+  // localStorage
+  let obj = {name : 'kim'}
+  localStorage.setItem('data', JSON.stringify(obj));
+  let output = localStorage.getItem('data');
+
+  console.log(JSON.parse(output).name);
+
+
+
+  
   return (    
     <div className="App">  
 
@@ -70,7 +80,7 @@ function App() {
         {/* 404페이지 */}
         <Route path="*" element={ <div>없는 페이지 입니다. </div> } />
         {/* 장바구니 페이지 */}
-          <Route path="/cart" element={<Cart/>} />
+        <Route path="/cart" element={<Cart/>} />
       </Routes>
 
       </div>

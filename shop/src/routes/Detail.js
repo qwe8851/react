@@ -4,8 +4,9 @@ import { useEffect, useState, useContext } from "react"
 import { Nav } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import { Context1 } from './../App.js'
-import { addItem } from '../store.js';
-import { useDispatch } from "react-redux";
+import { addItem } from '../store.js'
+import { useDispatch } from "react-redux"
+
 
 
 function Detail(props) {
@@ -41,6 +42,7 @@ function Detail(props) {
                     <button className="btn btn-danger" onClick={()=>{
                         dispatch(addItem({id : state, name : 'Red Knit', count : 1}))
                     }}>주문하기</button>
+                    <button onClick={()=>{ navigate('/cart')}}>Cart</button>
                 </div>
             </div>
             
