@@ -6,6 +6,7 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import Detail from './routes/Detail'
 import axios from 'axios'
 import Cart from './routes/Cart.js'
+import { useEffect } from 'react'
 
 
 function App() {
@@ -22,9 +23,13 @@ function App() {
 
   console.log(JSON.parse(output).name);
 
+  useEffect(()=>{
+    localStorage.setItem('watched', JSON.stringify([]))
+  })
 
 
-  
+
+
   return (    
     <div className="App">  
 

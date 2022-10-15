@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useContext } from "react"
 import { Nav } from "react-bootstrap"
-import { useParams } from "react-router-dom"
+import { json, useParams } from "react-router-dom"
 import { Context1 } from './../App.js'
 import { addItem } from '../store.js'
 import { useDispatch } from "react-redux"
@@ -16,8 +16,19 @@ function Detail(props) {
     let [count, setCount] = useState(0);
     let [alert, setAlert] = useState(true);
     let [tab, setTab] = useState(0);
-    let {재고} = useContext(Context1);
-    let dispatch = useDispatch()
+    let dispatch = useDispatch();
+
+    useEffect(()=>{
+        let output = localStorage.getItem('watched'); //찾은상품.id를 왜 대괄호로 묶는거지?
+        output = JSON.parse(output);
+        output.push(findProduct.id);
+        // 중복제거 set자료형
+        output = new Set(output);
+        output = Array.from(output);
+        localStorage.setItem('watched', JSON.stringify(output));
+    })
+
+
 
     useEffect(()=>{
         setTimeout(() => {
