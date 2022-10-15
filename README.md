@@ -843,16 +843,45 @@ import { changeName } from "./../store.js"
 
 
 
+<!-- 221009 -->
+
+<br><br><br>
+
+## localStorage
+### localStorage
+- 크롬 개발자도구에서 Application탭에 들어가면 확인 가능
+- object자료와 비슷하게 key/value형태로 저장
+- 유저가 브라우저 청소를 하지 않는 이상 영구적으로 남아있음
+#### Session Storage
+- localStorage와 같지만 sessionStorage는 영구적이진 않고 브라우저를 종료하면 삭제됨
+
+<br>
+
+### localStorage 문법
+```js
+localStorage.setItem('데이터이름', '데이터');   // 삽입
+localStorage.getItem('데이터이름');             // 읽기
+localStorage.removeItem('데이터이름');          // 삭제
+```
+<br>
+
+### localStorage에 array/object자료 저장
+문자만 저장할 수 있는 공간이라 array/object는 바로 저장하지 못함
+그래서 json으로 변환해서 저장해야 함.
+
+> #### ✔️ array/object → json
+>```js
+>localStorage.setItem('obj', JSON.stringify({name:'kim'}) );
+> ```
+> `JSON.stringify()`함수 안에 array/object를 넣으면 됨
 
 
-
-
-
-
-
-
-
-
+> #### ✔️ json → array/object
+> ```js
+> var a = localStorage.getItem('obj');
+> var b = JSON.parse(a)
+> ```
+> `JSON.parse()`함수 사용
 
 <br><br><br>
 
