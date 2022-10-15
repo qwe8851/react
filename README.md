@@ -721,7 +721,7 @@ function Detail(){
 > const root = ReactDOM.createRoot(document.getElementById('root'));
 > root.render(
 >   <React.StrictMode>
-    > <Provider store={store}>
+>     <Provider store={store}>
 >       <BrowserRouter>
 >         <App />
 >       </BrowserRouter>
@@ -730,7 +730,7 @@ function Detail(){
 > ); 
 > ```
 > index.js파일에서 Provider라는 컴포넌트와 아까 작성한 파일을 import해옴.
-그리고 밑에 `<Provider store={import해온거}>` 이걸로 `<App/>`을 감싸면 끝
+> 그리고 밑에 `<Provider store={import해온거}>` 이걸로 `<App/>`을 감싸면 끝
 > 
 > 그럼 이제 `<App>`과 그 모든 자식컴포넌트들은 store.js에 있던 state들을 맘대로 꺼내서 쓸 수 있음.
 
