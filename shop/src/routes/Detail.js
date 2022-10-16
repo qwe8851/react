@@ -8,7 +8,6 @@ import { addItem } from '../store.js'
 import { useDispatch } from "react-redux"
 
 
-
 function Detail(props) {
 
     let {id} = useParams();
@@ -20,15 +19,16 @@ function Detail(props) {
 
     useEffect(()=>{
         let output = localStorage.getItem('watched'); //찾은상품.id를 왜 대괄호로 묶는거지?
+        // json → array/object로 변환
         output = JSON.parse(output);
+        // output에 findProduct.id를 push
         output.push(findProduct.id);
         // 중복제거 set자료형
         output = new Set(output);
         output = Array.from(output);
+        // array/object → json으로 변환
         localStorage.setItem('watched', JSON.stringify(output));
     })
-
-
 
     useEffect(()=>{
         setTimeout(() => {

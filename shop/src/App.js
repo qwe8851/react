@@ -7,32 +7,30 @@ import Detail from './routes/Detail'
 import axios from 'axios'
 import Cart from './routes/Cart.js'
 import { useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'  // react-query → @tanstack/react-query
 
 
 function App() {
 
   // state 생성
   let [shoes, setShoes] = useState(data);
-  let navigate = useNavigate();
   let [재고, 재고변경] = useState([10, 11, 12]);
+  let navigate = useNavigate();
 
-  // localStorage
-  let obj = {name : 'kim'}
-  localStorage.setItem('data', JSON.stringify(obj));
-  let output = localStorage.getItem('data');
+  // react-query : ajax요청(get)
+  let result = useQuery(['작명'], ()=>  
+    //대괄호, return 생략
+    axios.get('https://codingapple1.github.io/userdata.json')
+    .then((a)=>{
+      console.log('refetch'); 
+      return a.data
+    })
+    // { staleTime : 2000}
+  )
 
-  console.log(JSON.parse(output).name);
-
-  useEffect(()=>{
-    localStorage.setItem('watched', JSON.stringify([]))
-  })
-
-
-
-
-  return (    
-    <div className="App">  
-
+  return (  
+    <div className="App"> 
+      
       {/* navbar */}
       <Navbar bg="light" variant="light">
         <Container>
@@ -40,6 +38,10 @@ function App() {
           <Nav className="me-auto">
             <Nav.Link onClick={()=>{ navigate('/')}}>Home</Nav.Link>
             <Nav.Link onClick={()=>{ navigate('/detail')}}>Detail</Nav.Link>
+          </Nav>
+          <Nav className='ms-auto'>
+          { result.error &&  "에러임" }
+          { result.isLoading ? "로딩중" :  result.data.name }
           </Nav>
         </Container>
       </Navbar>
@@ -110,7 +112,6 @@ function About(){
     </div>
   )
 }
-
 
 function Card(props) {
     return(

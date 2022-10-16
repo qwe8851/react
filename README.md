@@ -842,7 +842,7 @@ function Detail(){
 
 
 
-<!-- 221009 -->
+<!-- 221015 -->
 
 <br><br><br>
 
@@ -882,9 +882,101 @@ localStorage.removeItem('데이터이름');          // 삭제
 > ```
 > `JSON.parse()`함수 사용
 
+
+
+
+
+<!-- 221015 -->
+
 <br><br><br>
+
+## localStorage2
+### 중복제거
+중복젝를 하려면 Set자료형을 쓰면 됨.<br>
+Set은 array와 똑같은데 중복을 알아서 제거해주는 array임<br>
+`array → Set → array` 으로 사용<br>
+
+
+```js
+(Detail.js)
+
+useEffect(()=>{
+  let 꺼낸거 = localStorage.getItem('watched')
+  꺼낸거 = JSON.parse(꺼낸거)
+  꺼낸거.push(찾은상품.id)
+
+  //Set으로 바꿨다가 다시 array로 만들기
+  꺼낸거 = new Set(꺼낸거)
+  꺼낸거 = Array.from(꺼낸거)
+  localStorage.setItem('watched', JSON.stringify(꺼낸거))
+}, [])
+```
+ - set 변환 : `new Set(array자료)`
+ - array로 변환 : `Array.from(Set자료)`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
 
 # etc.
 ### 터미널/ 브라우저 콘솔창에 warning 없애기
 `/*eslint-disable*/`을 js파일 최상단에 추가
-
