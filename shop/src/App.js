@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query'  // react-query → @tanstack/r
 import axios from 'axios'
 import './App.css'
 import data from './data.js'
+import Test from './test.js'
 // lazy import (별도의 js파일로 분리됨)
 const Detail = lazy(() => import('./routes/Detail.js'))
 const Cart = lazy(() => import('./routes/Cart.js'))
@@ -82,6 +83,8 @@ function App() {
           <Route path="*" element={ <div>없는 페이지 입니다. </div> } />
           {/* 장바구니 페이지 */}
           <Route path="/cart" element={<Cart/>} />
+          {/* 성능개선 test */}
+          <Route path="/test" element={<Test/>} />
         </Routes>
       </Suspense>
       </div>
