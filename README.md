@@ -934,11 +934,57 @@ const Cart = lazy( () => import('./routes/Cart.js') )
   <Detail shoes={shoes} />
 </Suspense>
 ```
+<br>
 
+### 2. memo
+```js
+import {memo, useState} from 'react'
 
+let Child = memo(function(){
+  console.log('child재랜더링')
+  return <div>자식컴포넌트임</div>
+})
 
+function Parent(){
+  let [count, setCount] = useState(0)
 
+  return(
+    <Child />
+    <button onClick={()=>{ setCount(count+1) }}>+</button>
+  )
+}
+```
+memo import 후 memo로 component감싸기 <br>
+`let 컴포넌트명 = function(){}`
 
+그럼 이제 Child로 전송되는 props가 변할때만 재렌더링 됨.
+> +) memo로 감싼 컴포넌트는 기존props와 바뀐props를 비교하는 연산이 추가로 진행되므로 성능저하의 원인이 될 수 있음. 꼭 필요한 곳에만 사용
+
+#### useMemo
+```js
+import {useMemo, useState} from 'react'
+
+function 함수(){
+  return 반복문 100번 돌린 결과
+}
+
+function Parent(){
+  let result = useMemo(()=>{
+    return 함수()
+  }, [])
+
+  return(
+    <Child/>
+    <button onClick={()=>{
+      setCount(count+1)
+    }}>+</button>
+  )
+}
+```
+useEffet와 유사
+> useEffet와 useMemo의 차이
+> - useEffect : html이 랜더링 된 후
+> - useMemo : html이 렌더링 될 때 같이 
 
 
 

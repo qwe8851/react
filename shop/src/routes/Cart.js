@@ -1,16 +1,25 @@
-import { Button, Table } from 'react-bootstrap'
+import { memo, useState } from 'react';
+import { Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeName, increase } from './../store/userSlice.js'
 import { addCount } from './../store.js'
 
 
+let Child = memo( function(){
+    console.log('재랜더링');
+    return <div>자식임</div>
+})
+
 function Cart(){
-    
     let state = useSelector((state)=>state);
     let dispatch = useDispatch();
+    let [count, setCount] = useState(0);
 
     return(
         <div>
+            <Child count={count}></Child> {/*재랜더링o*/}
+            <button onClick={()=>{ setCount(count+1) }}>랜더링확인</button> {/*재랜더링x*/}
+
+
             {state.user.name} {state.user.age}의 장바구니
             {/* <button onClick={()=>{dispatch(increase(100))}}>버튼</button> */}
 
