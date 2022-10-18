@@ -916,9 +916,24 @@ useEffect(()=>{
 
 
 
+<!-- 221015 -->
 
+<br><br><br>
 
+## 성능개선
+### 1. lazy import
+```js
+(App.js)
 
+import {lazy, Suspense} from 'react'
+
+const Detail = lazy( () => import('./routes/Detail.js') )
+const Cart = lazy( () => import('./routes/Cart.js') )
+
+<Suspense fallback={ <div>로딩중임</div> }>
+  <Detail shoes={shoes} />
+</Suspense>
+```
 
 
 
@@ -980,3 +995,12 @@ useEffect(()=>{
 # etc.
 ### 터미널/ 브라우저 콘솔창에 warning 없애기
 `/*eslint-disable*/`을 js파일 최상단에 추가
+
+<br>
+
+### 유용한 크롬확장프로그램
+https://chrome.google.com/webstore/
+- **React Developer Tools** : 컴포넌트 미리보기/성능검사 <br>
+- **Redux Developer Tools** : redux store state 확인
+
+
